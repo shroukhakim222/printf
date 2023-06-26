@@ -4,8 +4,17 @@
 #include <unistd.h>
 
 #define BUFFER_SIZE 1024;
-#define UNUSED(x) void;
+#define UNUSED(x) void(x);
+
+#define F_MINUS 1;
+#define F_PLUS 2;
 #define f_zero 4;
+#define F_HASH 8;
+#define F_SPACE 16;
+
+#define S_LONG 2;
+#define S_SHORT 1;
+
 /**
  * struct tmp_fun - struct to choose type
  * @fmt: format
