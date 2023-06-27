@@ -24,7 +24,7 @@
  * @fmt: The format.
  * @fn: The function associated.
  */
-struct fmt 
+struct fmt
 {
 	char fmt;
 	int (*fn)(va_list, char[], int, int, int, int);
@@ -32,12 +32,12 @@ struct fmt
 
 
 /**
- * typedef struct tmp_fun fun - Struct op
+ * typedef struct fmt fmt_t - Struct op
  *
  * @fmt: The format.
  * @fm_t: The function associated.
  */
-typedef struct fmt fm_t;
+typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i,
@@ -107,11 +107,11 @@ char buffer[],
 	int flags, int width, int precision, int size);
 
 /****************** UTILS ******************/
-int printf_utils(char);
+int is_printable(char);
 int append_hexa_code(char, char[], int);
 int is_digit(char);
 
 long int convert_size_number(long int num, int size);
 long int convert_size_unsgnd(unsigned long int num, int size);
 
-#endif /* MAIN_H */
+#endif 
