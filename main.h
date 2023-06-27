@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 #define UNUSED(x) (void)(x)
-#define BUFFER_SIZE 1024
+#define BUFF_SIZE 1024
 
 /* FLAGS */
 #define F_MINUS 1
@@ -19,12 +19,12 @@
 #define S_SHORT 1
 
 /**
- * struct tmp_fun - Struct op
+ * struct fmt - Struct op
  *
  * @fmt: The format.
  * @fn: The function associated.
  */
-struct tmp_fun 
+struct fmt 
 {
 	char fmt;
 	int (*fn)(va_list, char[], int, int, int, int);
@@ -37,7 +37,7 @@ struct tmp_fun
  * @fmt: The format.
  * @fm_t: The function associated.
  */
-typedef struct tmp_fun fun;
+typedef struct fmt fm_t;
 
 int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i,
