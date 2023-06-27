@@ -14,7 +14,7 @@
 int print_string(va_list list, char buffer[], int flags, int width,
 		int precision, int size)
 {
-	int len;
+	int length = 0, i;
 	char *str = va_arg(list, char *);
 
 	UNUSED(buffer);
@@ -22,33 +22,37 @@ int print_string(va_list list, char buffer[], int flags, int width,
 	UNUSED(width);
 	UNUSED(precision);
 	UNUSED(size);
-	
 	if (str == NULL)
 	{
 		str = "(null)";
 		if (precision >= 6)
 			str = "      ";
 	}
-	while (str[len] != '\0')
-		len++;
-	if (precision >= 0 && precision < len)
+
+	while (str[length] != '\0')
+		length++;
+
+	if (precision >= 0 && precision < length)
 		length = precision;
-	if (width > len)
+
+	if (width > length)
 	{
 		if (flags & F_MINUS)
 		{
 			write(1, &str[0], length);
-			for (i = width - len; i > 0; i--)
+			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
 			return (width);
 		}
 		else
 		{
-			for (i = width - len; i > 0; i--)
+			for (i = width - length; i > 0; i--)
 				write(1, " ", 1);
-			write(1, &str[0], len);
-			return(width);
+			write(1, &str[0], length);
+			return (width);
 		}
-		return(write(1, str, len));
 	}
+
+	return (write(1, str, length));
 }
+

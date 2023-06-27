@@ -3,17 +3,17 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-#define BUFFER_SIZE 1024;
-#define UNUSED(x) void(x);
+#define BUFFER_SIZE 1024
+#define UNUSED(x) (void)(x)
 
-#define F_MINUS 1;
-#define F_PLUS 2;
-#define f_zero 4;
-#define F_HASH 8;
-#define F_SPACE 16;
+#define F_MINUS 1
+#define F_PLUS 2
+#define F_ZERO 4
+#define F_HASH 8
+#define F_SPACE 16
 
-#define S_LONG 2;
-#define S_SHORT 1;
+#define S_LONG 2
+#define S_SHORT 1
 
 /**
  * struct tmp_fun - struct to choose type
@@ -24,12 +24,12 @@
 struct tmp_fun
 {
 	char fmt;
-	int (*fn)(va_list, char[], int, int, int, int)
+	int (*fn)(va_list, char[], int, int, int, int);
 };
 /**
  * fun - typedef struct
  */
-typedef tmp_fun fun;
+typedef struct tmp_fun fun;
 
 int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i, va_list list,
@@ -52,4 +52,5 @@ int print_int(va_list list, char buffer[], int flags, int width,
 		int precision, int size);
 int print_string(va_list list, char buffer[], int flags, int width,
 		int precision, int size);
+int is_digit(char c);
 #endif

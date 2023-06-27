@@ -1,5 +1,8 @@
 #include "main.h"
 
+int write_unsgnd(int is_negative, int ind,
+	char buffer[],
+	int flags, int width, int precision, int size);
 /**
  * convert_size_unsgnd - Casts a number to the specified size
  * @num: Number to be casted
@@ -30,7 +33,7 @@ long int convert_size_unsgnd(unsigned long int num, int size)
 int print_unsigned(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int ind = BUFF_SIZE - 2;
+	int ind = BUFFER_SIZE - 2;
 	unsigned long int num = va_arg(types, unsigned long int);
 
 	num = convert_size_unsgnd(num, size);
@@ -38,7 +41,7 @@ int print_unsigned(va_list types, char buffer[],
 	if (num == 0)
 		buffer[ind--] = '0';
 
-	buffer[BUFF_SIZE - 1] = '\0';
+	buffer[BUFFER_SIZE - 1] = '\0';
 
 	while (num > 0)
 	{
@@ -47,7 +50,7 @@ int print_unsigned(va_list types, char buffer[],
 	}
 
 	ind++;
-	return (write_unsgnd(0, i, buffer, flags, width, precision, size));
+	return (write_unsgnd(0, ind, buffer, flags, width, precision, size));
 }
 
 /**
@@ -66,16 +69,16 @@ int write_unsgnd(int is_negative, int ind,
 	char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int length = BUFF_SIZE - ind - 1, i = 0;
+	int length = BUFFER_SIZE - ind - 1, i = 0;
 	char padd = ' ';
 
 	UNUSED(is_negative);
 	UNUSED(size);
 
-	if (precision == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0')
+	if (precision == 0 && ind == BUFFER_SIZE - 2 && buffer[ind] == '0')
 		return (0);
 
-	if (precision > 0 && precision < length)
+	if (precision > 0 && (precision < length))
 		padd = ' ';
 
 	while (precision > length)
@@ -107,6 +110,3 @@ int write_unsgnd(int is_negative, int ind,
 	}
 	return (write(1, &buffer[ind], length));
 }
-
-
-

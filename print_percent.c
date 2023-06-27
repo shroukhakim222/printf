@@ -12,7 +12,7 @@
  */
 
 int print_percent(va_list list, char buffer[], int flags,
-		int width, int precision, int size);
+		int width, int precision, int size)
 {
 	UNUSED(list);
 	UNUSED(buffer);
@@ -20,5 +20,5 @@ int print_percent(va_list list, char buffer[], int flags,
 	UNUSED(width);
 	UNUSED(precision);
 	UNUSED(size);
-	return (write(1, %%, 1));
+	return (write(1, "%%", 1));
 }
